@@ -24,9 +24,7 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
-        $this->call([
-           
-        ]);
+
 
         \App\Models\Author::factory(8)->create();
         \App\Models\Book::factory(25)->create();

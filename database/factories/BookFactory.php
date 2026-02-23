@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Author;
-use App\Models\categories;
+use App\Models\Category;
 use Database\Seeders\CategorySeeder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Termwind\Components\Paragraph;
@@ -27,11 +27,8 @@ class BookFactory extends Factory
             'slug' => str()->slug($name),
             'body' => fake() -> paragraphs(3, true),
             'published_at' => fake() -> boolean(70) ? fake()->dateTimeBetween('-5 years', 'now') : null,
-            'category_id' => categories::inRandomOrder()->first()->id,
+            'category_id' => Category::inRandomOrder()->first()->id,
             'author_id' => Author::inRandomOrder()->first()->id,
-
-
-
         ];
     }
 }

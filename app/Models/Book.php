@@ -7,12 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-
     use HasFactory;
+
     protected $guarded = ['id'];
 
-    public function categories() {
-        return $this->belongsTo(categories::class);
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
+
+    public function category() {
+        return $this->belongsTo(Category::class);
     }
 
     public function author(){

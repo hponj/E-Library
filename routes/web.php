@@ -7,7 +7,7 @@ Route::get('/', function () {
     return view('Home', ['title' => 'Homepage']);
 });
 
-Route::get('/hall', [HallController::class,'index']);
+
 
 Route::get('/about', function () {
     return view('about', ['title' => 'About']);

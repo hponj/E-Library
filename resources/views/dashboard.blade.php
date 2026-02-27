@@ -1,0 +1,1 @@
+<h1>Welcome bro {{ auth()->user()->name }} lu tuh {{ auth()->user()->role }}</h1>

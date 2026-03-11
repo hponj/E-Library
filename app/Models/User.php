@@ -21,6 +21,11 @@ class User extends Authenticatable
         'id'
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

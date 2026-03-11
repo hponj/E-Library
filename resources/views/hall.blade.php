@@ -40,7 +40,7 @@
  
         <div class="text-center mt-4">
             <h3 class="text-2xl font-bold">
-                <a href="#" class="text-gray-900 hover:text-blue-500 capitalize">
+                <a href="/hall/book/{{ $books[0]->slug }}" class="text-gray-900 hover:text-blue-500 capitalize">
                     {{ $books[0]->name }}
                 </a>
             </h3>
@@ -99,7 +99,7 @@
                     <div class="flex items-center text-gray-600 text-sm gap-4 mt-2">
                         <span class="flex items-center gap-1">
                             <i class="fa-solid fa-user text-blue-600"></i>
-                            <a href="/hall/author/{{ $book->author->slug }}" class="hover:text-blue-500">{{ $book->author->name }}</a>
+                            <a href="/hall?author={{ $book->author->slug }}" class="hover:text-blue-500">{{ $book->author->name }}</a>
                         </span>
                         <span class="flex items-center gap-1">
                             <i class="fa-solid fa-clock text-yellow-300"></i>

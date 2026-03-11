@@ -19,6 +19,7 @@ class LoginController extends Controller
     public function store(Request $request){
         $Validated = $request->validate([
             'name' => 'required|min:2|string|max:255 ',
+            'slug' => 'required|string|max:255|unique:users',
             'email' => 'required|string|unique:users|email:dns|max:255 ',
             'username' => 'required|string|min:3|unique:users|max:255 ',
             'password' => 'required|string|min:5|',
@@ -36,11 +37,38 @@ class LoginController extends Controller
         ]);
         if (Auth::attempt($credential)){
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+
+            $user = Auth::user();
+            $role = $user->role;
+
+            switch ($role) {
+                case 'admin':
+                    return redirect()->intended('/dashboard');
+
+                case 'user':
+                    return redirect()->intended('/');
+                default:
+                    Auth::logout();
+                    return redirect('/login')->with('error', 'Peran Tidak dikenal.');
+            }
+
+
         } 
 
         return back()->with('error','Login Failed!!');
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+ 
+        $request->session()->invalidate();
+ 
+        $request->session()->regenerateToken();
+ 
+        return redirect('/');
+    }
+
         
     
 }

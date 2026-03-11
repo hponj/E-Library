@@ -28,6 +28,16 @@
               <p class="mt-2 text-xs text-red-600">{{ $message }}</p>
             @enderror</p>
           </div>
+
+                  
+          <div>
+          <label for="slug" class="block text-sm font-medium text-gray-700">Slug</label>
+          <input type="text" name="slug" id="slug"  required
+            class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm @error('slug') border-red-500 @enderror">
+          @error('slug')
+            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+          @enderror
+          </div>
  
           <div>
             <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
@@ -77,6 +87,25 @@
         </p>
       </div>
   </div>
+
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const nameInput = document.getElementById('name');
+    const slugInput = document.getElementById('slug');
+ 
+    nameInput.addEventListener('input', function () {
+      const slug = nameInput.value
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\s-]/g, '') // Hapus karakter non-alfanumerik
+        .replace(/\s+/g, '-')         // Ganti spasi dengan tanda hubung
+        .replace(/-+/g, '-');         // Ganti beberapa tanda hubung dengan satu
+ 
+      slugInput.value = slug;
+    });
+  });
+</script>
   
 </body>
 </html>

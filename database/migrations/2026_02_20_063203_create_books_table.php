@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->string('cover')->nullable();
             $table->text('body');
+            $table->boolean('status')->default(false);
             $table->timestamp('published_at')->nullable();
             $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreignId('author_id')->references('id')->on('authors')->onDelete('cascade');

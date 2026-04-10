@@ -31,7 +31,7 @@
     <div class="max-w-4xl mx-auto mb-18">
         <div class="overflow-hidden rounded-lg shadow-lg max-h-[400px]">
             @if ($books[0]->cover)
-                <img src="{{ Storage::url($books[0]->image) }}" alt="">
+                <img src="{{ Storage::url($books[0]->cover) }}" alt="">
             @else
                 <img src="https://picsum.photos/1200/400" alt="Cover Buku" class="w-full h-96 object-cover">
             @endif
@@ -84,7 +84,7 @@
             <div class="bg-white shadow-md rounded-lg overflow-hidden">
                 <div class="relative">
                 @if ($book->cover)
-                <img src="{{ Storage::url($book->image) }}" alt="">
+                <img src="{{ Storage::url($book->cover) }}" alt="">
                 @else
                 <img src="https://picsum.photos/1200/400" alt="Cover Buku" class="w-full h-96 object-cover">
                 @endif

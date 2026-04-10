@@ -33,36 +33,47 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($authors as $author)
-                    
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
-                        {{ $loop->iteration }}
-                    </th>
-                    <td class="px-6 py-4">
-                        {{ $author->name }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ $author->slug }}
-                    </td>
-                    <td class="px-6 py-4 flex gap-2">
-                        <form action="/dashboard/author/{{ $author->slug }}" method="POST" class="text-red-500 hover:text-red-700 transition">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" onclick="return confirm('Are you sure?')">
-                                <i class="fa-sharp fa-solid fa-trash"></i>Delete
-                            </button>
-                        </form>
-                        <p>|</p>
-                        <div class="text-yellow-600 hover:text-yellow-700 transition">
-                            <a href="/dashboard/author/{{ $author->slug }}/edit"><i class="fa-sharp fa-solid fa-edit"></i>Edit</a>
-                        </div>
-                    </td>
-                </tr>
-                @endforeach
+                @if ($authors->count())
+                    @foreach ($authors as $author)
+                        
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
+                            {{ $loop->iteration }}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{ $author->name }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $author->slug }}
+                        </td>
+                        <td class="px-6 py-4 flex gap-2">
+                            <form action="/dashboard/author/{{ $author->slug }}" method="POST" class="text-red-500 hover:text-red-700 transition">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick="return confirm('Are you sure?')">
+                                    <i class="fa-sharp fa-solid fa-trash"></i>Delete
+                                </button>
+                            </form>
+                            <p>|</p>
+                            <div class="text-yellow-600 hover:text-yellow-700 transition">
+                                <a href="/dashboard/author/{{ $author->slug }}/edit"><i class="fa-sharp fa-solid fa-edit"></i>Edit</a>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                @else
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                        <td colspan="6" class="px-6 py-4 text-center text-gray-500">
+                            No authors found.
+                        </td>
+                    </tr>                
+                @endif
                 
             </tbody>
         </table>
+        <div class="mt-4">
+          {{ $authors->links() }}
+        </div>
       </div>
     </div>
   </div>

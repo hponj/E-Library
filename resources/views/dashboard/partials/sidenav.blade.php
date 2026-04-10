@@ -29,6 +29,18 @@
                     <span class="text-sm">User</span>
                 </a>
             </li>
+            <li class="mb-1 group">
+                <a href="/dashboard/book" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('dashboard/book*') ? 'bg-gray-900 text-white' : 'text-gray-900' }}">
+                    <i class="fa-solid fa-book mr-3 text-lg"></i>
+                    <span class="text-sm">Book</span>
+                </a>
+            </li>
+            <li class="mb-1 group">
+                <a href="/dashboard/borrow" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('dashboard/borrow*') ? 'bg-gray-900 text-white' : 'text-gray-900' }}">
+                    <i class="fa-solid fa-hand-holding mr-3 text-lg"></i>
+                    <span class="text-sm">borrow</span>
+                </a>
+            </li>
             {{-- <span class="text-gray-400 font-bold">PERSONAL</span>
             <li class="mb-1 group">
                 <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\BorrowController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HallController;
 use App\Http\Controllers\HomeController;
@@ -24,6 +26,7 @@ Route::post('/login', [LoginController::class,'authenticate'])->middleware('gues
 Route::get('/registration', [LoginController::class,'registration']);
 Route::post('/registration', [LoginController::class,'store']);
 Route::post('/logout', [LoginController::class,'Logout'])->middleware('auth');
+Route::post('/borrow', [BorrowController::class,'store'] )->middleware('auth');
 
 Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function(){
     Route::get('/', function (){
@@ -38,7 +41,12 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function(){
     Route::delete('/category/{category:slug}', [CategoryController::class,'delete']);
 
     Route::resource('author', AuthorController::class);
-
     Route::resource('user', UserController::class);
+    Route::resource('book', BookController::class);
+
+    Route::get('/borrow', [BorrowController::class,'index']);
+    Route::get('/borrow/{borrow}/edit', [BorrowController::class,'edit']);
+    Route::put('/borrow/{borrow}', [BorrowController::class,'update']);
+    Route::delete('/borrow/{borrow}', [BorrowController::class,'destroy']);
     
 });
